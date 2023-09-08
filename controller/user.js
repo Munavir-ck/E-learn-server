@@ -678,6 +678,7 @@ const get_subject = async (req, res) => {
 const filter_our_teacher = async (req, res) => {
   const { checkedValues } = req.body;
 
+
   let ratingArr = [];
   let subjectArr = [];
   let classesArr = [];
@@ -707,6 +708,8 @@ const filter_our_teacher = async (req, res) => {
       classesArr.push(item.value);
     });
 
+  
+
     const maxRating = Math.max(...ratingArr);
 
     await teacherDb
@@ -716,13 +719,14 @@ const filter_our_teacher = async (req, res) => {
             $or: [
               { subject: { $in: subjectArr } },
               { class: { $in: classesArr } },
-
-              { rating: { $gt: maxRating } },
+             { rating: { $gt: maxRating } },
             ],
           },
         },
       ])
       .then((data) => {
+
+        console.log(data)
        
         res.status(200).json({ status: true, result: data });
       })
@@ -731,6 +735,7 @@ const filter_our_teacher = async (req, res) => {
       });
   }
 };
+
 
 export {
   signup,
