@@ -349,7 +349,7 @@ const get_teacherDetais = async (req, res) => {
 };
 
 const reservation_page = async (req, res) => {
-  const teacherId = req.query
+  const teacherId = req.query.id
   await teacherDb
     .findOne({ _id: teacherId })
     .then((data) => {
@@ -705,8 +705,7 @@ const filter_our_teacher = async (req, res) => {
       classesArr.push(item.value);
     });
 
-
-    const maxRating = Math.max(...ratingArr);
+let maxRating = Math.max(...ratingArr);
     if (maxRating===-Infinity) {
       maxRating=5
     }
