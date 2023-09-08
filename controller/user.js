@@ -637,9 +637,7 @@ const customer_review = async (req, res) => {
           totalRatings = element.rating + totalRatings;
         });
 
-        console.log(totalRatings, "totalR");
-        console.log(count, "count");
-
+        
         const rating = totalRatings / count;
 
         await teacherDb.findOneAndUpdate(
@@ -677,8 +675,7 @@ const get_subject = async (req, res) => {
 
 const filter_our_teacher = async (req, res) => {
   const { checkedValues } = req.body;
-console.log(checkedValues)
-console.log(11111111)
+
   let ratingArr = [];
   let subjectArr = [];
   let classesArr = [];
@@ -708,9 +705,11 @@ console.log(11111111)
       classesArr.push(item.value);
     });
 
-    console.log(classesArr,ratingArr,subjectArr)
 
     const maxRating = Math.max(...ratingArr);
+    if (maxRating===-Infinity) {
+      maxRating=5
+    }
 
     await teacherDb
       .aggregate([
@@ -726,7 +725,7 @@ console.log(11111111)
       ])
       .then((data) => {
 
-        console.log(data,44444444444444)
+      
        
         res.status(200).json({ status: true, result: data });
       })
