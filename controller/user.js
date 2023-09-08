@@ -677,8 +677,8 @@ const get_subject = async (req, res) => {
 
 const filter_our_teacher = async (req, res) => {
   const { checkedValues } = req.body;
-
-
+console.log(checkedValues)
+console.log(11111111)
   let ratingArr = [];
   let subjectArr = [];
   let classesArr = [];
@@ -726,7 +726,7 @@ const filter_our_teacher = async (req, res) => {
       ])
       .then((data) => {
 
-        console.log(data)
+        console.log(data,44444444444444)
        
         res.status(200).json({ status: true, result: data });
       })
