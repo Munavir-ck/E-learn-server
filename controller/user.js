@@ -371,7 +371,7 @@ const filter_slot = async (req, res) => {
  
     if (dateTostring) {
       const date = new Date(dateTostring);
-
+      date.setDate(date.getDate() + 1);
       const utcDate = new Date(
         Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate())
       );
