@@ -708,7 +708,7 @@ console.log(11111111)
       classesArr.push(item.value);
     });
 
-  
+    console.log(classesArr,ratingArr,subjectArr)
 
     const maxRating = Math.max(...ratingArr);
 
